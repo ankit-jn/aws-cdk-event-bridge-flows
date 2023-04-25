@@ -1,0 +1,12 @@
+{
+    "dev": {
+        "account_id": "<account no>",
+        "aws_region": "ap-south-1",
+        "vpc": {
+            "cidr": "10.10.0.0/16",
+            "enable_dns_hostnames": true,
+            "enable_dns_support": true
+        },
+        "event_bus_name": "order-events" 
+    }
+}

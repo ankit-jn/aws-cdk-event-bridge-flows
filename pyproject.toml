@@ -1,0 +1,17 @@
+[tool.poetry]
+name = "aws-cdk-event-bridge-flows"
+version = "0.1.0"
+description = ""
+authors = ["Ankit Jain <ankii.jain@gmail.com>"]
+readme = "README.md"
+packages = [{include = "aws_cdk_event_bridge_flows"}]
+
+[tool.poetry.dependencies]
+python = "^3.11"
+antlr4-python3-runtime = "^4.12.0"
+pytest = "^7.3.1"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
