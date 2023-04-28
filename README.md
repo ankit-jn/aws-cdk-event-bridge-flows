@@ -33,6 +33,22 @@ API G/w -> Lambda function, which is writing events to Event Bus.
 
 - There are other Source/Target combinations available that can effectivey be used based on requirements.
 
+#### How to Test?
+
+Hit the API with following json in request body:
+
+- API: https://<API ID>.execute-api.<AWS Region Code>.amazonaws.com/dev/events/generator
+- Method: Post
+- Request Body (Json):
+```
+{
+	"stage": "order_process",
+	"order_id": 14
+}
+```
+
+- Reference values for stage: `order_receive`, `order_process`, `order_shipment1, `order_deliver`
+
 ### Requirements
 
 | Name | Version |
