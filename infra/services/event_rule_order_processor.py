@@ -1,7 +1,7 @@
 import json
 
 from aws_cdk import Duration
-from aws_cdk import aws_events, aws_pipes
+from aws_cdk import aws_events, aws_pipes, aws_sqs
 from aws_cdk import aws_events_targets as targets
 from aws_cdk import aws_iam, aws_lambda
 from aws_cdk import aws_sqs as sqs
@@ -48,16 +48,6 @@ def create_event_rule_order_processor(
         )
     )
 
-    # Input Transformer
-    order_processor_input_transformer = {
-        "event_type": aws_events.EventField.from_path("$.detail-type"),
-        "order_id": aws_events.EventField.from_path( "$.detail.order_id"),
-        "payload": {
-            "order_id": aws_events.EventField.from_path("$.detail.order_id"),
-            "order_date": aws_events.EventField.from_path("$.detail.order_date"),
-        },
-    }
-
     event_pipe_role = aws_iam.Role(
             scope,
             id=f"{deployment_name}-event-pipe-role",
@@ -97,8 +87,5 @@ def create_event_rule_order_processor(
             sqs_queue_parameters=aws_pipes.CfnPipe.PipeSourceSqsQueueParametersProperty(
                 batch_size=1
             )
-        ),
-        target_parameters=aws_pipes.CfnPipe.PipeTargetParametersProperty(
-            input_template=json.dumps(order_processor_input_transformer)
         ),
     )
